@@ -54,19 +54,25 @@ void mi_cross(double* const xs, const int* const lp, double* const ys, const int
   const double noise = *noisep;
   int xnormed[l], ynormed[m];
 
+#ifdef _OPENMP
   #pragma omp parallel
+#endif
   {
     int i, j;
     unsigned int seed = gen_seed(xs, l*n, k);
 
+#ifdef _OPENMP
     #pragma omp for nowait
+#endif
     for (i = 0; i < l; i++) {
       double* const p = xs+(i*n);
       xnormed[i] = normalize(p, n);
       add_noise(p, n, noise, &seed);
     }
 
+#ifdef _OPENMP
     #pragma omp for
+#endif
     for (j = 0; j < m; j++) {
       double* const p = ys+(j*n);
       ynormed[j] = normalize(p, n);
@@ -76,7 +82,9 @@ void mi_cross(double* const xs, const int* const lp, double* const ys, const int
     mi_t mi;
     make_mi(&mi, n, k);
 
+#ifdef _OPENMP
     #pragma omp for schedule(dynamic)
+#endif
     for (i = 0; i < l; i++)
       for (j = 0; j < m; j++)
 	res[i*m+j] = (xnormed[i] && ynormed[j]) ? mutual_information(&mi, xs+(i*n), ys+(j*n)) : NAN;
@@ -92,12 +100,16 @@ void mi_all(double* const xs, const int* const lp, const int* const np, const in
   const double noise = *noisep;
   int xnormed[l];
 
+#ifdef _OPENMP
   #pragma omp parallel
+#endif
   {
     int i, j;
     unsigned int seed = gen_seed(xs, l*n, k);
 
+#ifdef _OPENMP
     #pragma omp for nowait
+#endif
     for (i = 0; i < l; i++) {
       double* const p = xs+(i*n);
       xnormed[i] = normalize(p, n);
@@ -111,7 +123,9 @@ void mi_all(double* const xs, const int* const lp, const int* const np, const in
     mi_t mi;
     make_mi(&mi, n, k);
 
+#ifdef _OPENMP
     #pragma omp for schedule(dynamic)
+#endif
     for (i = 1; i < l; i++)
       for (j = 0; j < i; j++)
     	res[i*l+j] = res[j*l+i] = (xnormed[i] && xnormed[j]) ? mutual_information(&mi, xs+(i*n), xs+(j*n)) : NAN;

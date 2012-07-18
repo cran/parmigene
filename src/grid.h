@@ -20,7 +20,6 @@ License along with parmigene. If not, see <http://www.gnu.org/licenses/>.
 #ifndef GRID_H
 #define GRID_H
 
-#include "config.h"
 #include "points.h"
 
 typedef struct {

@@ -20,7 +20,6 @@ License along with parmigene. If not, see <http://www.gnu.org/licenses/>.
 #ifndef POINTS_H
 #define POINTS_H
 
-#include "config.h"
 #include <float.h>
 
 

@@ -20,7 +20,6 @@ License along with parmigene. If not, see <http://www.gnu.org/licenses/>.
 #ifndef MI_H
 #define MI_H
 
-#include "config.h"
 #include "grid.h"
 #include "points.h"
 

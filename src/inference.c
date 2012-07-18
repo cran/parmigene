@@ -33,7 +33,9 @@ void aracne(const double* const mis, const int* const np, const double* const ep
 
   memcpy(res, mis, sizeof(double)*n*n);
 
+#ifdef _OPENMP
   #pragma omp parallel for schedule(dynamic) private(j,k)
+#endif
   for (i = 2; i < n; i++) {
     for (j = 1; j < i; j++) {
       const double x = ref(mis, i, j);
@@ -69,11 +71,15 @@ void clr(const double* const mis, const int* const np, double* const res) {
   const int n = *np;
   double ms[n], vs[n];
 
+#ifdef _OPENMP
   #pragma omp parallel
+#endif
   {
     int i, j;
 
+#ifdef _OPENMP
     #pragma omp for private(j)
+#endif
     for (i = 0; i < n; i++) {
       double acc;
 
@@ -88,7 +94,9 @@ void clr(const double* const mis, const int* const np, double* const res) {
       vs[i] = acc / n;
     }
 
+#ifdef _OPENMP
     #pragma omp for schedule(dynamic) private(j)
+#endif
     for (i = 1; i < n; i++) {
       ref(res, i, i) = 0;
 
@@ -114,7 +122,9 @@ void mrnet(const double* const mis, const int* const np, double* const res) {
   for (i = 0; i < n*n; i++)
     res[i] = 0;
 
+#ifdef _OPENMP
   #pragma omp parallel for private(j)
+#endif
   for (i = 0; i < n; i++) {
     int turn;
     char selected[n];

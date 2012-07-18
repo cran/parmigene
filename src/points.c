@@ -62,6 +62,18 @@ int normalize(coord_t* const cs, const int n) {
   return 1;
 }
 
+#ifdef WIN32
+// This version is in POSIX/C99 for [s]rand()
+#define rand_r myrand_r
+#undef RAND_MAX
+#define RAND_MAX 31767
+static int rand_r (unsigned int *seed)
+{
+    *seed = *seed * 1103515245 + 12345;
+    return((unsigned)(*seed/65536) % 32768);
+}
+#endif
+
 void add_noise(coord_t* const cs, const int n, const double noise, unsigned int* seed) {
   int i;
   for (i = 0; i < n; i++)
