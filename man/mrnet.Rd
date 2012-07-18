@@ -11,7 +11,7 @@ mrnet(mi)
   \item{mi}{matrix of the mutual information.}
 }
 \value{
-  A square weighted incidence matrix of the inferred network.
+  A square weighted adjacency matrix of the inferred network.
 }
 \details{
   The MRNET approach starts by selecting the variable \eqn{X_i}{Xi}

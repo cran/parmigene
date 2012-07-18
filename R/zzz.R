@@ -24,7 +24,7 @@
      as.integer(k),
      as.double(noise),
      res = double(1),
-     PACKAGE = "@PACKAGE_NAME@",
+     PACKAGE = "parmigene",
      DUP = TRUE)$res
 
 .mi_cross <- function(xs, ys, k, noise) {
@@ -41,7 +41,7 @@
             as.integer(k),
             as.double(noise),
             res = double(h1*h2),
-            PACKAGE = "@PACKAGE_NAME@",
+            PACKAGE = "parmigene",
             DUP = TRUE)$res
 
   m <- t(matrix(res, nrow=h2))
@@ -61,7 +61,7 @@
             as.integer(k),
             as.double(noise),
             res = double(h*h),
-            PACKAGE = "@PACKAGE_NAME@",
+            PACKAGE = "parmigene",
             DUP = TRUE)$res
 
   m <- matrix(res, nrow=h)
@@ -77,7 +77,7 @@
             as.double(eps),
             as.double(eta),
             res=double(n*n),
-            PACKAGE = "@PACKAGE_NAME@",
+            PACKAGE = "parmigene",
             DUP = FALSE)$res
 
   m <- matrix(res, nrow=n)
@@ -91,7 +91,7 @@
             as.double(t(mis)),
             as.integer(n),
             res = double(n*n),
-            PACKAGE = "@PACKAGE_NAME@",
+            PACKAGE = "parmigene",
             DUP = FALSE)$res
 
   m <- matrix(res, nrow=n)
@@ -105,7 +105,7 @@
               as.double(t(mis)),
               as.integer(n),
               res = double(n*n),
-              PACKAGE = "@PACKAGE_NAME@",
+              PACKAGE = "parmigene",
               DUP = FALSE)$res
 
   m <- matrix(res, nrow=n)

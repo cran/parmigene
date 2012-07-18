@@ -1,9 +1,0 @@
-autom4te.cache
-config.log
-config.status
-configure
-R/zzz.R
-src/Makevars
-src/*.o
-src/config.h*
-src/knnmi.so

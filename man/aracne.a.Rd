@@ -14,7 +14,7 @@ aracne.a(mi, eps=0.05)
     triple of nodes.}
 }
 \value{
-  A square weighted incidence matrix of the inferred network.
+  A square weighted adjacency matrix of the inferred network.
 }
 \details{
   This algorithm considers each triple of edges independently and
